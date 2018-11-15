@@ -20,9 +20,22 @@ class Pinterest:
         data = json.loads(r.text)
         print(data)
 
+    def getUserData(self, username):
+        api = 'https://api.pinterest.com/v1/users/{username}/?access_token={access_token}'
+        url = api.format(username=username, access_token=self.token)
+        r = requests.get(url)
+        data = json.loads(r.text)
+        print(data)
+
+    def getBoardInfo(self, boardName):
+        api = 'https://api.pinterest.com/v1/boards/{boardName}/?access_token={access_token}&fields=id%2Cname%2Curl%2Ccounts%2Ccreated_at%2Ccreator%2Cdescription%2Cimage%2Cprivacy%2Creason'
+        url = api.format(boardName=boardName, access_token=self.token)
+        r = requests.get(url)
+        data = json.loads(r.text)
+        print(data)
+
     def __del__(self):
         print('取得が完了しました！')
-
 
 token = 'AqID5E77gHhK_n5AhoLIZ3O-qoNpFVzVvmGoI_ZFToUf6uBS_gjPADAAAbm2RU6NWvOAW2wAAAAA'
 pinterest = Pinterest(token)
@@ -32,3 +45,9 @@ pinterest.getPinFromBoard(boardName)
 
 pinId = '129267451783289763'
 pinterest.getPinData(pinId)
+
+username = 'hisjapan'
+pinterest.getUserData(username)
+
+boardName = 'hisjapan/his_blue'
+pinterest.getBoardInfo(boardName)
