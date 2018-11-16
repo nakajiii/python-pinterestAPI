@@ -60,29 +60,3 @@ class CreatePinterest:
 
     def __del__(self):
         print('作成が完了しました！')
-
-
-token = 'AqID5E77gHhK_n5AhoLIZ3O-qoNpFVzVvmGoI_ZFToUf6uBS_gjPADAAAbm2RU6NWvOAW2wAAAAA'
-
-g = GetPinterest(token)
-c = CreatePinterest(token)
-
-# get from here
-boardName = 'hisjapan/his_blue'
-g.getPinFromBoard(boardName)
-
-pinId = '129267451783289763'
-g.getPinData(pinId)
-
-username = 'hisjapan'
-g.getUserData(username)
-
-boardName = 'hisjapan/his_blue'
-g.getBoardInfo(boardName)
-
-g.getMyAccount()
-
-# create from here
-boardName = 'hisjapan/his_blue'
-description = 'こんな所に行ってみたい！'
-c.createBoard(boardName, description)
