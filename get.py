@@ -59,7 +59,7 @@ class CreatePinterest:
         print(r.status_code)
 
     def __del__(self):
-        print('取得が完了しました！')
+        print('作成が完了しました！')
 
 
 token = 'AqID5E77gHhK_n5AhoLIZ3O-qoNpFVzVvmGoI_ZFToUf6uBS_gjPADAAAbm2RU6NWvOAW2wAAAAA'
