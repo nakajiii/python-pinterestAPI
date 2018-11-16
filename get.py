@@ -2,7 +2,7 @@ import json
 import requests
 import pandas as pd
 
-class Pinterest:
+class GetPinterest:
     def __init__(self, token):
         self.token = token
 
@@ -34,20 +34,55 @@ class Pinterest:
         data = json.loads(r.text)
         print(data)
 
+    def getMyAccount(self):
+        api = 'https://api.pinterest.com/v1/me/?access_token={access_token}&fields=first_name%2Cid%2Clast_name%2Curl'
+        url = api.format(access_token=self.token)
+        r = requests.get(url)
+        data = json.loads(r.text)
+        print(data)
+
     def __del__(self):
         print('取得が完了しました！')
 
-token = 'AqID5E77gHhK_n5AhoLIZ3O-qoNpFVzVvmGoI_ZFToUf6uBS_gjPADAAAbm2RU6NWvOAW2wAAAAA'
-pinterest = Pinterest(token)
+class CreatePinterest:
+    def __init__(self, token):
+        self.token = token
 
+    def createBoard(self, boardName, description):
+        api = 'https://api.pinterest.com/v1/boards/?access_token={access_token}&fields=id%2Cname'
+        url = api.format(access_token=self.token)
+        param = {
+            'name': pinName,
+            'description': description
+        }
+        r = requests.post(url,json=param)
+        print(r.status_code)
+
+    def __del__(self):
+        print('取得が完了しました！')
+
+
+token = 'AqID5E77gHhK_n5AhoLIZ3O-qoNpFVzVvmGoI_ZFToUf6uBS_gjPADAAAbm2RU6NWvOAW2wAAAAA'
+
+g = GetPinterest(token)
+c = CreatePinterest(token)
+
+# get from here
 boardName = 'hisjapan/his_blue'
-pinterest.getPinFromBoard(boardName)
+g.getPinFromBoard(boardName)
 
 pinId = '129267451783289763'
-pinterest.getPinData(pinId)
+g.getPinData(pinId)
 
 username = 'hisjapan'
-pinterest.getUserData(username)
+g.getUserData(username)
 
 boardName = 'hisjapan/his_blue'
-pinterest.getBoardInfo(boardName)
+g.getBoardInfo(boardName)
+
+g.getMyAccount()
+
+# create from here
+boardName = 'hisjapan/his_blue'
+description = 'こんな所に行ってみたい！'
+c.createBoard(boardName, description)
