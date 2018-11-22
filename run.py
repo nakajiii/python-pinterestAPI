@@ -1,6 +1,6 @@
 from app import GetPinterest, CreatePinterest
 
-token = 'AqID5E77gHhK_n5AhoLIZ3O-qoNpFVzVvmGoI_ZFToUf6uBS_gjPADAAAbm2RU6NWvOAW2wAAAAA'
+token = 'YOUR-TOKEN-HERE'
 
 g = GetPinterest(token)
 c = CreatePinterest(token)
