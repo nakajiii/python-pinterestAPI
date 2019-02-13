@@ -52,10 +52,21 @@ class CreatePinterest:
         api = 'https://api.pinterest.com/v1/boards/?access_token={access_token}&fields=id%2Cname'
         url = api.format(access_token=self.token)
         param = {
-            'name': pinName,
+            'name': boardName,
             'description': description
         }
         r = requests.post(url,json=param)
+        print(r.status_code)
+
+    def createPin(self, boardName, description, image_url):
+        api = 'https://api.pinterest.com/v1/pins/?access_token={access_token}'
+        url = api.format(access_token=self.token)
+        param = {
+            'board': boardName,
+            'note': description,
+            'image_url': image_url
+        }
+        r = requests.post(url, json=param)
         print(r.status_code)
 
     def __del__(self):
